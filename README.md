@@ -9,7 +9,7 @@
 
 senshuRmdは，専修大学人間科学部心理学科での卒業論文・修士論文をRmarkdownで作成するためのパッケージです。
 
-作成中です・・・
+まだWordのフォーマットができておらず，作成中です・・・
 
 ## インストール
 
@@ -19,3 +19,9 @@ senshuRmdは，専修大学人間科学部心理学科での卒業論文・修�
     devtools::install_github("ykunisato/senshuRmd")
 
 ## 使用法
+
+RStudioで，「File」 -\> 「New File」 -\> 「R Markdown…」
+をクリックする。以下の画面がでてきたら，「From
+Template」から「Thesis format for Senshu {senshuRmd}」を選んで，OKをクリックする。
+
+![](fig/fig1.png)
