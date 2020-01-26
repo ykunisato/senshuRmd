@@ -1,6 +1,7 @@
 ---
 title: 'タイトル:'
 author: '学籍番号: 氏名:'
+
 output:
   pdf_document:
    latex_engine: xelatex
@@ -10,10 +11,20 @@ output:
    highlight: tango
 classoption: xelatex,ja=standard
 documentclass: bxjsarticle
+fontsize: 11pt
 mainfont: ipaexg.ttf
 bibliography:  reference.bib
 csl: apa-6th-edition.csl
 ---
+
+<!-- 使用するRパッケージを以下に追加する-->
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(kableExtra)
+library(knitr)
+library(tidyverse)
+library(psych)
+```
 
 \clearpage 
 <!-- 卒論全体を通して，パラグラフライティングを心がけてください。
@@ -89,7 +100,21 @@ csl: apa-6th-edition.csl
 
 ## 実験or調査参加者（←見出しは適宜変更してください）
 
-神奈川県内の私立大学生？名(男性？名，女性？名)が実験or調査に参加した。参加者の平均年齢 (標準偏差) は，？？歳(？？)であった。
+<!--　論文内の数値は手で打ち込まずにRから引っ張ってきてください。
+例えば，以下はPsychパッケージのbfiデータの場合ですが，性別と年齢のデータを用意して，
+インラインで-->
+
+```{r include=FALSE}
+# bfiデータを読み込み
+data(bfi)
+# bfiの性別(gender)をtableで集計して，データフレーム化，その後ワイド化して，変数名を変更
+gender <- data.frame(table(bfi$gender)) %>% 
+   tidyr::spread(Var1, Freq) %>% 
+   rename(male=1,female = 2)
+```
+
+
+神奈川県内の私立大学生`r sprintf('%.0f',nrow(bfi))`名(男性`r sprintf('%.0f',gender$male)`名，女性`r sprintf('%.0f',gender$female)`名)が実験or調査に参加した。参加者の平均年齢 (標準偏差) は，`r sprintf('%.2f',mean(bfi$age))`歳(`r sprintf('%.2f',sd(bfi$age))`)であった。
 
 <!--　もし，研究脱落者や調査において欠測値がある場合は，何名がデータから脱落し，
 結果として何名を分析対象にしたか述べてください  -->
@@ -116,6 +141,25 @@ csl: apa-6th-edition.csl
 ## 記述統計（←見出しは適宜変更してください）
 <!--　得られたデータの平均値，標準偏差，得点範囲などの基本的な記述統計量を記載してください。
 また，ヒストグラムなどを使って，データの分布も示しましょう  -->
+
+<!--　  -->
+```{r echo=FALSE}
+# bfiの各Big Five因子を合計して，describe関数で記述統計を計算する。不要なの除外。
+summary_bfi <- bfi %>% 
+   mutate(A = A1 + A2 + A3 + A4 + A5,
+          C = C1 + C2 + C3 + C4 + C5,
+          E = E1 + E2 + E3 + E4 + E5,
+          N = N1 + N2 + N3 + N4 + N5,
+          O = O1 + O2 + O3 + O4 + O5) %>% 
+   select(A,C,E,O,A) %>% 
+   describe() %>% 
+   select(-vars, -trimmed, -mad, -range, -se)
+
+# kableを使って表を作る
+kable(summary_bfi, format = "latex", booktabs = T, caption = "bfiの記述統計量",digits = 2,row.names = FALSE,col.names = c("人数","平均","標準偏差","中央値","最小値","最大値","歪度","尖度")) %>%
+  kable_styling(latex_options = c("striped", "hold_position"),full_width = F) %>%
+  add_footnote(c("脚注も書けます"))
+```
 
 
 ## メインの解析の前提となる解析（←見出しは適宜変更してください）
