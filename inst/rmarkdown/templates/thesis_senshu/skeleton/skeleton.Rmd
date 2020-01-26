@@ -4,8 +4,14 @@ author: '学籍番号: 氏名:'
 output:
   pdf_document:
    latex_engine: xelatex
-highlight: "zenburn"
+   toc: true
+   toc_depth: 2
+   highlight: tango
+classoption: xelatex,ja=standard
+documentclass: bxjsarticle
 mainfont: ipaexg.ttf
+bibliography: reference.bib
+bibliographystyle: jecon_jpa.bst
 ---
 
 <!-- 卒論全体を通して，パラグラフライティングを心がけてください。
@@ -70,6 +76,8 @@ mainfont: ipaexg.ttf
 # 目的
 <!-- 本研究の目的について，仮説も含めて明確に述べてください -->
 
+\clearpage 
+
 # 方法
 
 ## 実験or調査参加者（←見出しは適宜変更してください）
@@ -95,6 +103,7 @@ mainfont: ipaexg.ttf
 <!-- 実施する予定の統計解析を記述してください。
 使用したソフトのバージョンも記載してください。 -->
 
+\clearpage 
 
 # 結果
 ## 記述統計（←見出しは適宜変更してください）
@@ -116,6 +125,7 @@ mainfont: ipaexg.ttf
 なお，その解析が事前に計画したものでない場合は，かならず，データ取得後に追加した探索的な解析であると
 わかるように記載してください。  -->
 
+\clearpage 
 
 # 考察
 ## 主要な発見の概要（←見出しは適宜変更してください）
@@ -145,8 +155,9 @@ mainfont: ipaexg.ttf
 ## 結論（←見出しは適宜変更してください）
 <!--　考察が長くなってくるので，考察を要約して，コンパクトに結論を述べてください。結論がデータから乖離したものにならないように注意してください-->
 
+\clearpage 
 
-## 要約
+# 要約
 <!--  要約は論文が完成したら，以下の４点を以下の順番にまとめて，要約を作成しましょう
 1背景と目的
 2方法
@@ -156,15 +167,18 @@ mainfont: ipaexg.ttf
 
 
 
+\clearpage 
+# 引用文献{#references .unnumbered}
 
-
-# 引用文献
 <!-- 日本心理学会の形式に従って記載してください　https://psych.or.jp/manual/ -->
 
+
+\clearpage 
 
 # 謝辞
 <!-- 参加者や研究に際してお世話になった方にお礼を述べたい場合は記載ください -->
 
+\clearpage 
 
 # 付録
 <!-- 実験のプロトコル，使った実験材料，質問紙など全てを添付してください -->
