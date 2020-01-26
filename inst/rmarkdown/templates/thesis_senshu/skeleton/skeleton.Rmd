@@ -1,6 +1,11 @@
 ---
 title: 'タイトル:'
 author: '学籍番号: 氏名:'
+output:
+  pdf_document:
+   latex_engine: xelatex
+highlight: "zenburn"
+mainfont: ipaexg.ttf
 ---
 
 <!-- 卒論全体を通して，パラグラフライティングを心がけてください。
