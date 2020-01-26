@@ -4,20 +4,23 @@ author: '学籍番号: 氏名:'
 output:
   pdf_document:
    latex_engine: xelatex
+   keep_tex: yes
    toc: true
    toc_depth: 2
    highlight: tango
 classoption: xelatex,ja=standard
 documentclass: bxjsarticle
 mainfont: ipaexg.ttf
-bibliography: reference.bib
-bibliographystyle: jecon_jpa.bst
+bibliography:  reference.bib
+csl: apa-6th-edition.csl
 ---
 
+\clearpage 
 <!-- 卒論全体を通して，パラグラフライティングを心がけてください。
 つまり，１段落で述べる主張は１つだけにして
 ，段落を組み合わせることで論が展開するように書いてください。 
 なお，<>で囲われた部分はコメントアウトされるので削除しなくても大丈夫です-->
+
 # 序文
 ## はじめに
 <!-- 研究分野や内容の重要性や有用性について述べてください。
@@ -27,6 +30,10 @@ bibliographystyle: jecon_jpa.bst
 臨床疾患だと疫学的なデータや疾患による障害度など一般的な背景知識など，
 多くの読者が知っている知識から始めて，段々と論点を絞ってください。 -->
 
+
+<!-- 文献の引用の際にはbibtex形式のものをreference.bibにコピペして，それの@直後のインデックスを指定ください -->
+
+[@Blechman1990]と[@深谷達史2011]は・・・
 
 
 ## 先行研究について（←見出しは適宜変更してください）
@@ -168,7 +175,8 @@ bibliographystyle: jecon_jpa.bst
 
 
 \clearpage 
-# 引用文献{#references .unnumbered}
+# 引用文献
+<div id="refs"></div>
 
 <!-- 日本心理学会の形式に従って記載してください　https://psych.or.jp/manual/ -->
 
