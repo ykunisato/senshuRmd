@@ -12,6 +12,7 @@ csl: apa-6th-edition.csl
 output:
   pdf_document:
    latex_engine: xelatex
+   template: senshu.tex
    keep_tex: yes
    toc: true
    toc_depth: 3
