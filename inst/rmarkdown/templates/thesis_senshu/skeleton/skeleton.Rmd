@@ -2,24 +2,13 @@
 title: 'タイトル:'
 author: '学籍番号: 氏名:'
 
-
-documentclass: bxjsarticle
-classoption: xelatex,ja=standard
-fontsize: 12pt
-geometry: left = 3.5cm, right = 3.5cm, top = 4.5cm, bottom = 4.5cm
 bibliography:  reference.bib
 csl: apa-6th-edition.csl
-output:
-  pdf_document:
-   latex_engine: xelatex
-   template: senshu.tex
-   keep_tex: yes
-   toc: true
-   toc_depth: 3
-   highlight: tango
+output: senshuRmd::senshu_thesis
 ---
 
 <!-- 
+
 <<< このRmdテンプレートを使う際の注意事項 >>>
 1.この上の部分は，「タイトル」の変更と学籍番号・氏名の追加以外は絶対に変更しない。
 　変更すると正常に動かなくなります。
