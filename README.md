@@ -25,30 +25,9 @@ Template」から「Thesis format for Senshu
 
 ![](fig/fig1.png)
 
-## メモ
+## 日本語引用文献に関する注意事項
 
-以下を行うには，pandocのlatexテンプレート(<https://github.com/jgm/pandoc-templates/blob/master/default.latex>
-)に手を加えたものをテンプレートファイルにする必要があります。
-
-  - 表紙と目次で改ページする
-  - geometryパッケージをxelatexで機能させて1頁を800字に調整する
-
-### 表紙と目次で改ページする
-
-`\begin{document}`の直後に`\pagestyle{empty}`をいれて，`\maketitle`の後に`\clearpage`を追加する。そして，目次が終わったら（`$body$`の前），以下の３つをいれて，改ページ，ページ番号ふるのを再開，ページ番号を１に戻すをする。
-
-### 1頁を800字に調整
-
-`\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}`をコメントアウトして，`\geometry{$for(geometry)$$geometry$$sep$,$endfor$}`を入れる(xelatexでは一度geometryを読み込んでいるので，二度読み込むことでエラーがでるらしい・・・)。
-
-RmdのYAMLにて，以下を書くとマージンの指定ができる。12ptで以下の指定をすると，1頁あたり800字になる。
-
-  - geometry: left = 3.5cm, right = 3.5cm, top = 4.5cm, bottom =
-4.5cm
-
-### 日本語引用文献
-
-このRmdテンプレートでは，apa-6th-edition.cslを使ってAPA形式で出力する。英語文献はいい感じだが，日本語文献は位置も引用形式もちょっとおかしい感じになっているので，調整が必要になる。このRmdテンプレートでは，TeXファイルが出力されるので，その出力されたファイルをいじって最終調整をして，以下をコンソールに打ち込むといい感じになる。
+このRmdテンプレートでは，apa-6th-edition.cslを使ってAPA形式で出力します。英語文献はいい感じですが，日本語文献は位置も引用形式もちょっとおかしい感じになっています。このRmdテンプレートでは，TeXファイルが出力されるので，その出力されたファイルをいじって最終調整をして，以下をコンソールに打ち込むといい感じになります。
 
 ``` r
 library(tinytex)
