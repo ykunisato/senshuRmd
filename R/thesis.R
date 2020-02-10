@@ -28,7 +28,7 @@ set_rc_ccp <- function (file_name = "thesis"){
   # make README
   if(!file.exists(file.path(path, "README.md"))){
     file.create(file.path(path, "README.md"), showWarnings = FALSE)
-    writeLines("こちらにはこのフォルダ全体に関する説明を書きます。\n\n- analysis: 解析で使用したRMarkdonwファイルをここにおきます。\n- data: 研究で使うデータをここにおきます。\n- function: analysisフォルダ内のRMarkdownに記載するには煩雑なR関数をここにおきます。\n- materials: 研究で用いた材料をここにおきます。", "README.md")
+    writeLines("## README\n\n- analysis:\n- data:\n- function:\n- materials:", "README.md")
   }
 
   # make RMarkdown file and directory
@@ -38,28 +38,28 @@ set_rc_ccp <- function (file_name = "thesis"){
   # make analysis directory
   if(!dir.exists(file.path(path, "analysis"))){
     dir.create(file.path(path, "analysis"), showWarnings = FALSE)
-    file.create(file.path(path, "analysis/README.md"), showWarnings = FALSE)
-    writeLines("analysisフォルダには，解析に関するRMarkdownファイルを置きます。各ファイルの説明をこのREADMEに書いてください。", "analysis/README.md")
+    file.create(file.path(path, "analysis/README_analysis.md"), showWarnings = FALSE)
+    writeLines("README about analysis", "analysis/README.md")
   }
 
   # make data directory
   if(!dir.exists(file.path(path, "data"))){
     dir.create(file.path(path, "data"), showWarnings = FALSE)
-    file.create(file.path(path, "data/README.md"), showWarnings = FALSE)
-    writeLines("dataフォルダには，dataのファイルを置きます。各ファイルの説明をこのREADMEに書いてください。", "data/README.md")
+    file.create(file.path(path, "data/README_data.md"), showWarnings = FALSE)
+    writeLines("README about data", "data/README.md")
   }
 
   # make function directory
   if(!dir.exists(file.path(path, "function"))){
     dir.create(file.path(path, "function"), showWarnings = FALSE)
-    file.create(file.path(path, "function/README.md"), showWarnings = FALSE)
-    writeLines("functionフォルダには，analysisフォルダのRMarkdownファイルに書くには煩雑なRの関数を定義するファイルをおきます。各ファイルの説明をこのREADMEに書いてください。", "function/README.md")
+    file.create(file.path(path, "function/README_function.md"), showWarnings = FALSE)
+    writeLines("README about function", "function/README.md")
   }
 
   # make materials directory
   if(!dir.exists(file.path(path, "materials"))){
     dir.create(file.path(path, "materials"), showWarnings = FALSE)
-    file.create(file.path(path, "materials/README.md"), showWarnings = FALSE)
-    writeLines("materialsフォルダには，行動実験課題や調査票などの研究で用いた材料を全て置きます。フォルダごとに整理して，各ファイルやフォルダの説明をこのREADMEに書いてください。", "materials/README.md")
+    file.create(file.path(path, "materials/README_materials.md"), showWarnings = FALSE)
+    writeLines("README about materials", "materials/README.md")
   }
 }
