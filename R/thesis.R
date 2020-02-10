@@ -57,9 +57,13 @@ set_rc_ccp <- function (file_name = "thesis"){
   }
 
   # make README
-  file.create(file.path(path, "README.md"), showWarnings = TRUE)
-  writeLines("こちらにはこのフォルダ全体に関する説明を書きます。\n\n- analysis: 解析で使用したRMarkdonwファイルをここにおきます。\n- data: 研究で使うデータをここにおきます。\n- function: analysisフォルダ内のRMarkdownに記載するには煩雑なR関数をここにおきます。\n- materials: 研究で用いた材料をここにおきます。", "README.md")
+  if(!file.exists(file.path(path, "README.md"))){
+    file.create(file.path(path, "README.md"), showWarnings = TRUE)
+    writeLines("こちらにはこのフォルダ全体に関する説明を書きます。\n\n- analysis: 解析で使用したRMarkdonwファイルをここにおきます。\n- data: 研究で使うデータをここにおきます。\n- function: analysisフォルダ内のRMarkdownに記載するには煩雑なR関数をここにおきます。\n- materials: 研究で用いた材料をここにおきます。", "README.md")
+  }
 
   # make RMarkdown file and directory
-  rmarkdown::draft(paste0(file_name,".Rmd"), template = "thesis_senshu", package = "senshuRmd", edit = FALSE)
+  if(!file.exists(file.path(path, paste0(file_name,".Rmd")))){
+    rmarkdown::draft(paste0(file_name,".Rmd"), template = "thesis_senshu", package = "senshuRmd", edit = FALSE)
+  }
 }
