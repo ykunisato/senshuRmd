@@ -18,6 +18,8 @@ senshuRmdは，専修大学人間科学部心理学科での卒業論文・修�
 
 ## 使用法
 
+githubリポジトリ
+
     library(senshuRmd)
     set_rc_ccp("yoshihiko_kunisato")
 

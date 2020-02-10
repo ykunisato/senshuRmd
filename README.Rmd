@@ -32,6 +32,8 @@ devtools::install_github("ykunisato/senshuRmd")
 ## 使用法
 
 
+githubリポジトリ
+
 ```
 library(senshuRmd)
 set_rc_ccp("yoshihiko_kunisato")
