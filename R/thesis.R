@@ -39,27 +39,27 @@ set_rc_ccp <- function (file_name = "thesis"){
   if(!dir.exists(file.path(path, "analysis"))){
     dir.create(file.path(path, "analysis"), showWarnings = FALSE)
     file.create(file.path(path, "analysis/README_analysis.md"), showWarnings = FALSE)
-    writeLines("README about analysis", "analysis/README.md")
+    writeLines("README about analysis", "analysis/README_analysis.md")
   }
 
   # make data directory
   if(!dir.exists(file.path(path, "data"))){
     dir.create(file.path(path, "data"), showWarnings = FALSE)
     file.create(file.path(path, "data/README_data.md"), showWarnings = FALSE)
-    writeLines("README about data", "data/README.md")
+    writeLines("README about data", "data/README_data.md")
   }
 
   # make function directory
   if(!dir.exists(file.path(path, "function"))){
     dir.create(file.path(path, "function"), showWarnings = FALSE)
     file.create(file.path(path, "function/README_function.md"), showWarnings = FALSE)
-    writeLines("README about function", "function/README.md")
+    writeLines("README about function", "function/README_function.md")
   }
 
   # make materials directory
   if(!dir.exists(file.path(path, "materials"))){
     dir.create(file.path(path, "materials"), showWarnings = FALSE)
     file.create(file.path(path, "materials/README_materials.md"), showWarnings = FALSE)
-    writeLines("README about materials", "materials/README.md")
+    writeLines("README about materials", "materials/README_material.md")
   }
 }

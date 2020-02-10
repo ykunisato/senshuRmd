@@ -1,7 +1,7 @@
 Package: senshuRmd
 Type: Package
 Title: Rmarkdown template for thesis format at Department of Psychology, Senshu University
-Version: 0.6.3
+Version: 0.6.4
 Author: Yoshihiko Kunisato
 Maintainer: Yoshihiko Kunisato <ykunisato@psy.senshu-u.ac.jp>
 Description: Rmarkdown template for thesis format at Department of Psychology, Senshu University
