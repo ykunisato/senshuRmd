@@ -31,6 +31,13 @@ devtools::install_github("ykunisato/senshuRmd")
 
 ## 使用法
 
+
+```
+library(senshuRmd)
+set_rc_ccp("yoshihiko_kunisato")
+```
+
+
 RStudioで，「File」 -> 「New File」 -> 「R Markdown...」 をクリックする。以下の画面がでてきたら，「From Template」から「Thesis format for Senshu {senshuRmd}」を選んで，OKをクリックする。
 
 ![](fig/fig1.png)

@@ -18,6 +18,9 @@ senshuRmdは，専修大学人間科学部心理学科での卒業論文・修�
 
 ## 使用法
 
+    library(senshuRmd)
+    set_rc_ccp("yoshihiko_kunisato")
+
 RStudioで，「File」 -\> 「New File」 -\> 「R Markdown…」
 をクリックする。以下の画面がでてきたら，「From
 Template」から「Thesis format for Senshu
