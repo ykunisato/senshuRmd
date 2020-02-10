@@ -60,6 +60,6 @@ set_rc_ccp <- function (file_name = "thesis"){
   if(!dir.exists(file.path(path, "materials"))){
     dir.create(file.path(path, "materials"), showWarnings = FALSE)
     file.create(file.path(path, "materials/README_materials.md"), showWarnings = FALSE)
-    writeLines("README about materials", "materials/README_material.md")
+    writeLines("README about materials", "materials/README_materials.md")
   }
 }
