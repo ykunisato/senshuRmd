@@ -24,11 +24,7 @@ senshu_thesis <- function(){
 #' @export
 
 set_rc_ccp <- function (file_name = "thesis"){
-  if(missing(file_name)){
-    file_name <- "thesis"
-  }
   path = getwd()
-
   # make README
   if(!file.exists(file.path(path, "README.md"))){
     file.create(file.path(path, "README.md"), showWarnings = FALSE)
