@@ -35,7 +35,7 @@ CompendiumのためのフォルダとREADMEファイルの作成と卒論・修�
 
 以下のような感じのフォルダ構成になります。
 
-![](docs/fig1.png)
+![](https://ykunisato.github.io/senshuRmd/fig1.png)
 
 ご自身が名前を付けたフォルダに卒論や修論用Rmarkdownがはいっていますので，そちらを開いて，Knitをしてみてください。卒論・修論フォーマットのPDFが出力されるかと思います。
 
@@ -47,7 +47,7 @@ Compendiumは不要で，卒論・修論用RMarkdownだけがほしい場合は�
 Template」から「Thesis format for Senshu
 {senshuRmd}」を選んで，OKをクリックする。これで，卒論・修論用RMarkdownが準備されます。
 
-![](docs/fig2.png)
+![](https://ykunisato.github.io/senshuRmd//fig2.png)
 
 ## 日本語引用文献に関する注意事項
 
