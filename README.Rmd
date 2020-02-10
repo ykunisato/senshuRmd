@@ -18,7 +18,11 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-senshuRmdは，専修大学人間科学部心理学科での卒業論文・修士論文をRmarkdownで作成するためのRパッケージです。使用にあたり，tinytexが必要です。
+senshuRmdは，専修大学人間科学部心理学科での卒業論文・修士論文をRmarkdownで作成するためのRパッケージです。
+
+使用にあたり，tinytexが必要です。tinytexについては，[こちら](https://yihui.org/tinytex/)をご確認ください。
+
+なお，日本語の場合，IPAexフォントが必要なので，tinytexのインストール後，``` tinytex::tlmgr_install(‘ipaex’)``` でインストールください。
 
 ## インストール
 
