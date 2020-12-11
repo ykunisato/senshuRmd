@@ -258,6 +258,20 @@ kable(summary_bfi,
 例えば，群間比較において，ベースラインで差がないかどうか調べるなどがこれにあたります。  -->
 
 
+<!-- 相関行列は以下のようにすると綺麗に出力できます -->
+```{r include=FALSE}
+# bfiの外向性と神経症傾向の相関を出します
+summary_bfi_fig <- bfi %>% 
+   mutate(Agreeableness = A1 + A2 + A3 + A4 + A5,
+          Conscientiousness = C1 + C2 + C3 + C4 + C5,
+          Extraversion = E1 + E2 + E3 + E4 + E5,
+          Neuroticism = N1 + N2 + N3 + N4 + N5,
+          Openness = O1 + O2 + O3 + O4 + O5)
+
+cor_result <- cor.test(summary_bfi_fig$Extraversion,summary_bfi_fig$Neuroticism)
+```
+
+
 <!-- 画像の図は以下のように挿入できます　-->
 ![How R Markdown works](fig1.png)
 
