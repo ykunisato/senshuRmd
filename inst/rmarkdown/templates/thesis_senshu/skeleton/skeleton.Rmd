@@ -3,7 +3,7 @@ title: 'タイトル:'
 author: '学籍番号: 氏名:'
 
 bibliography:  reference.bib
-csl: apa-6th-edition.csl
+suppress-bibliography: yes
 output: senshuRmd::senshu_thesis
 ---
 
@@ -44,12 +44,13 @@ output: senshuRmd::senshu_thesis
 　　（よくあるのは，他の研究者の主張を書いていて，途中から自分の主張が混ざるとかです）。
 -->
 
-<!--　このRmdファイル内で使用するRパッケージを以下に追加してください-->
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 library(kableExtra)
 library(knitr)
 library(tidyverse)
 library(psych)
+# このRmdファイル内で使用するRパッケージを以下に追加してください
+jpaRmd::jpa_cite(Rmd_file = "Untitled.Rmd", Bib_file = "reference.bib")
 ```
 
 
@@ -225,16 +226,16 @@ toLatex(session_info,locale = FALSE)
 <!--　得られたデータの平均値，標準偏差，得点範囲などの基本的な記述統計を記載してください。
 また，ヒストグラムなどを使って，データの分布も示しましょう  -->
 
-<!--　  -->
+<!--　表は以下のようにすると綺麗に出力されます  -->
 ```{r echo=FALSE}
 # bfiの各Big Five因子を合計して，describe関数で記述統計を計算する。不要なものは除外。
 summary_bfi <- bfi %>% 
-   mutate(A = A1 + A2 + A3 + A4 + A5,
-          C = C1 + C2 + C3 + C4 + C5,
-          E = E1 + E2 + E3 + E4 + E5,
-          N = N1 + N2 + N3 + N4 + N5,
-          O = O1 + O2 + O3 + O4 + O5) %>% 
-   select(A,C,E,O,A) %>% 
+   mutate(Agreeableness = A1 + A2 + A3 + A4 + A5,
+          Conscientiousness = C1 + C2 + C3 + C4 + C5,
+          Extraversion = E1 + E2 + E3 + E4 + E5,
+          Neuroticism = N1 + N2 + N3 + N4 + N5,
+          Openness = O1 + O2 + O3 + O4 + O5) %>% 
+   select(Extraversion,Neuroticism,Conscientiousness,Agreeableness,Openness) %>% 
    describe() %>% 
    select(-vars, -trimmed, -mad, -range, -se)
 
@@ -242,12 +243,11 @@ summary_bfi <- bfi %>%
 kable(summary_bfi, 
       format = "latex", 
       booktabs = T, 
-      caption = "bfiの記述統計量",
+      caption = "Descriptive Statistics of bfi",
       digits = 2,
-      row.names = FALSE,
-      col.names = c("人数","平均","標準偏差","中央値","最小値","最大値","歪度","尖度")) %>%
+      col.names = c("n","Mean","SD","Median","Min","Max","Skewness","kurtosis")) %>%
   kable_styling(latex_options = c("striped", "hold_position"),full_width = F) %>%
-  add_footnote(c("脚注も書けます"))
+  add_footnote(c("Note. SD=standard deviation"))
 ```
 
 
@@ -258,10 +258,39 @@ kable(summary_bfi,
 例えば，群間比較において，ベースラインで差がないかどうか調べるなどがこれにあたります。  -->
 
 
+<!-- 画像の図は以下のように挿入できます　-->
+![How R Markdown works](fig1.png)
+
 ## メインの解析の記載
 <!-- ↑この見出しは，内容に合わせて変更ください-->
 
 <!--　研究の目的においてメインとなる解析結果について記述してください  -->
+
+<!-- Rのggplotで論文の図を作った場合　
+Rチャンクの指定において，\\label{fig:figs}以降に図のタイトルを書きます。
+-->
+```{r figs, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7,fig.height=4,fig.cap="\\label{fig:figs}Examples of bar plot and scatter plot "}
+# 相関係数の算出で使ったと同じデータを使う(genderは因子型にする)
+summary_bfi_fig2 <- summary_bfi_fig %>% 
+   mutate(gender = ifelse(gender=="1", "Male","Female"))
+
+p1 <- ggplot(summary_bfi_fig2,aes(x = gender, y = Neuroticism)) +
+   stat_summary(aes(fill=gender),fun.y=mean,geom="bar",alpha=0.8, colour="black", position="dodge", show.legend = F) +
+   stat_summary(aes(group=gender),fun.data=mean_sdl,geom="errorbar",size=0.5,width=0.2,position=position_dodge(.9)) +
+   scale_fill_manual(values=c("gray10","white")) +
+   theme(panel.background = element_blank()) +
+   xlab("Gender") +
+   theme_apa() + 
+   geom_signif(stat = "identity",data = data.frame(x = c(1),xend = c(2),y = c(30),annotation = c("***")),
+              aes(x = x, xend = xend, y = y, yend = y, annotation = annotation)) +
+   scale_y_continuous(expand = c(0,0),limits = c(0,33))
+
+p2 <- ggplot(summary_bfi_fig2,aes(x = Extraversion, y = Neuroticism)) +
+   geom_point() +
+   theme_apa()
+
+gridExtra::grid.arrange(p1, p2, nrow = 1)
+```
 
 
 ## メインの解析結果を補強する解析の記載
@@ -339,14 +368,16 @@ kable(summary_bfi,
 
 \clearpage 
 # 引用文献
-<div id="refs"></div>
-
-<!-- 日本心理学会の形式に従って記載してください。
-https://psych.or.jp/manual/ -->
-
+\noindent
+\begingroup
+\setlength{\parindent}{-0.3in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+<!-- 引用文献ファイル名を以下の{ }内に入れてください。拡張子は不要です。-->
+\input{reference}
+\endgroup
 
 \clearpage 
-
 # 謝辞
 <!-- この論文を完成させるにあたって必要不可欠な貢献をしてくださった方々への謝辞を記載ください -->
 
