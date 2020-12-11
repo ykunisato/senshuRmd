@@ -49,6 +49,9 @@ library(kableExtra)
 library(knitr)
 library(tidyverse)
 library(psych)
+library(gridExtra)
+library(jtools)
+library(ggsignif)
 # このRmdファイル内で使用するRパッケージを以下に追加してください
 jpaRmd::jpa_cite(Rmd_file = "Untitled.Rmd", Bib_file = "reference.bib")
 ```
