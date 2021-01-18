@@ -5,7 +5,12 @@
 \title{R Markdown output formats Template for thesis at Department of Psychology, Senshu University
 Format for thesis at Department of Psychology, Senshu University}
 \usage{
-senshu_thesis()
+senshu_thesis(Rmd_file, Bib_file)
+}
+\arguments{
+\item{Rmd_file}{file name of R Markdown file}
+
+\item{Bib_file}{file name of Bib file}
 }
 \description{
 R Markdown output formats Template for thesis at Department of Psychology, Senshu University

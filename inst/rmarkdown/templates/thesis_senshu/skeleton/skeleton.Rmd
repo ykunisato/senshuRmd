@@ -2,9 +2,8 @@
 title: 'タイトル:'
 author: '学籍番号: 氏名:'
 
-bibliography:  reference.bib
 suppress-bibliography: yes
-output: senshuRmd::senshu_thesis
+output: jpaRmd::render_jpr(Rmd_file = "Untitled.Rmd", Bib_file = "reference.bib")
 ---
 
 <!-- 
@@ -275,8 +274,25 @@ cor_result <- cor.test(summary_bfi_fig$Extraversion,summary_bfi_fig$Neuroticism)
 ```
 
 
-<!-- 画像の図は以下のように挿入できます　-->
+<!-- 画像の図は以下のように挿入できます
+[]内にタイトル，()内にファイル名を指定すれば，自動的に図番号を打ってくれます。
+-->
 ![How R Markdown works](fig1.png)
+
+
+<!-- 画像の図は以下のようにlatex記法でも挿入できます。
+includegraphicsの{}内にファイル名，caption{}内にタイトルをいれます。
+begin{figure}[H]としておくと，このコマンドをいれた場所に図が挿入されます（便利です）。
+includegraphics[]内のwidthで大きさも調整できます（ここでは小さくしました）。
+なお，このlatex記法だけで図を挿入すると何故かエラーがでます。
+その場合は，上記のマークダウン記法（![How R Markdown works](fig1.png)）を１ついれるとうまくいきます。
+-->
+
+\begin{figure}[H]
+\centering
+\includegraphics[clip,width = 5cm]{fig1.png}
+\caption{How R Markdown works}    
+\end{figure}
 
 ## メインの解析の記載
 <!-- ↑この見出しは，内容に合わせて変更ください-->
@@ -390,8 +406,9 @@ gridExtra::grid.arrange(p1, p2, nrow = 1)
 \setlength{\parindent}{-0.3in}
 \setlength{\leftskip}{0.2in}
 \setlength{\parskip}{8pt}
-<!-- 引用文献ファイル名を以下の{ }内に入れてください。拡張子は不要です。-->
-\input{reference}
+
+<insert_reference>
+
 \endgroup
 
 \clearpage 
@@ -402,5 +419,11 @@ gridExtra::grid.arrange(p1, p2, nrow = 1)
 
 # 付録
 <!-- 実験のプロトコル，使った実験材料，質問紙など全てを添付してください。
-なお実験のプログラムコードを載せるのでもいいですが，どこかに公開リポジトリを作って，
-それへのリンクでもかまいません-->
+なお実験のプログラムコードを載せるのでもいいですが，どこかに公開リポジトリを作って，それへのリンクでもかまいません。
+Rの解析コードの場合は，以下のようにチャンクを設定してコードを貼り付けると解析は実行せずに，解析コードがいい感じでPDFになります-->
+
+```{r eval=FALSE, include=TRUE}
+library(tidyverse)
+
+
+```
