@@ -43,6 +43,11 @@ output: senshuRmd::senshu_thesis(Rmd_file = "Untitled.Rmd", Bib_file = "referenc
 　　（よくあるのは，他の研究者の主張を書いていて，途中から自分の主張が混ざるとかです）。
 -->
 
+<!-- 
+Rパッケージの読み込み
+卒論で使用するRパケージは，すべてこちらで読み込む（他のチャンクでlibaryを使わない）
+-->
+
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 library(kableExtra)
 library(knitr)
@@ -201,16 +206,24 @@ gender <- data.frame(table(bfi$gender)) %>%
 
 
 ## 統計解析
-<!-- 実施する予定の統計解析の計画を記述してください（解析計画まではデータ収集前に記載します）。
-使用したソフト，パッケージのバージョンも記載してください。
-Rしか使わないのであれば，以下のように，sessionInfoで示すのが楽かと思います。
--->
+<!-- 以下のようにするとsessionInfoから使用したRのバージョンとOS情報が抽出されるので，解析環境の情報を自動的に記録できます-->
 
-```{r echo=FALSE, results='asis'}
-session_info <- sessionInfo()
-toLatex(session_info,locale = FALSE)
+　統計解析は，`r sprintf(sessionInfo()$running)`上で，`r sprintf(sessionInfo()$R.version$version.string)`を用いて実施された。使用されたRパッケージは以下の通りになる。
+
+```{r echo=FALSE}
+# 使用したRパッケージ名とバージョン情報を抽出して表を作る
+packages_used <- as_tibble(sessioninfo::package_info()) %>%
+   filter(attached==TRUE) %>% 
+   select(package,loadedversion)
+
+kable(packages_used, 
+      format = "latex", 
+      booktabs = T, 
+      caption = "使用Rパッケージ",
+      digits = 2,
+      col.names = c("R packages","Version")) %>%
+  kable_styling(latex_options = c("striped", "hold_position"),full_width = F) 
 ```
-
 
 \clearpage 
 <!-- 
@@ -237,7 +250,8 @@ summary_bfi <- bfi %>%
           Openness = O1 + O2 + O3 + O4 + O5) %>% 
    select(Extraversion,Neuroticism,Conscientiousness,Agreeableness,Openness) %>% 
    describe() %>% 
-   select(-vars, -trimmed, -mad, -range, -se)
+   as.data.frame() %>% 
+   select(n, mean, sd, median, min, max)
 
 # kableを使って表を作る（以下のようにやると結構きれいになります）
 kable(summary_bfi, 
@@ -245,7 +259,7 @@ kable(summary_bfi,
       booktabs = T, 
       caption = "Descriptive Statistics of bfi",
       digits = 2,
-      col.names = c("n","Mean","SD","Median","Min","Max","Skewness","kurtosis")) %>%
+      col.names = c("n","Mean","SD","Median","Min","Max") )%>%
   kable_styling(latex_options = c("striped", "hold_position"),full_width = F) %>%
   add_footnote(c("Note. SD=standard deviation"))
 ```
@@ -288,7 +302,7 @@ includegraphics[]内のwidthで大きさも調整できます（ここでは小�
 
 \begin{figure}[H]
 \centering
-\includegraphics[clip,width = 5cm]{fig1.png}
+\includegraphics[clip,width = 8cm]{fig1.png}
 \caption{How R Markdown works}    
 \end{figure}
 
