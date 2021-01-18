@@ -51,8 +51,6 @@ library(psych)
 library(gridExtra)
 library(jtools)
 library(ggsignif)
-# このRmdファイル内で使用するRパッケージを以下に追加してください
-jpaRmd::jpa_cite(Rmd_file = "Untitled.Rmd", Bib_file = "reference.bib")
 ```
 
 
@@ -239,7 +237,7 @@ summary_bfi <- bfi %>%
           Openness = O1 + O2 + O3 + O4 + O5) %>% 
    select(Extraversion,Neuroticism,Conscientiousness,Agreeableness,Openness) %>% 
    describe() %>% 
-   select(-vars, -trimmed, -mad, -range, -se, -skew, -kurtosis)
+   select(-vars, -trimmed, -mad, -range, -se)
 
 # kableを使って表を作る（以下のようにやると結構きれいになります）
 kable(summary_bfi, 
@@ -247,7 +245,7 @@ kable(summary_bfi,
       booktabs = T, 
       caption = "Descriptive Statistics of bfi",
       digits = 2,
-      col.names = c("n","Mean","SD","Median","Min","Max")) %>%
+      col.names = c("n","Mean","SD","Median","Min","Max","Skewness","kurtosis")) %>%
   kable_styling(latex_options = c("striped", "hold_position"),full_width = F) %>%
   add_footnote(c("Note. SD=standard deviation"))
 ```
@@ -308,7 +306,7 @@ summary_bfi_fig2 <- summary_bfi_fig %>%
    mutate(gender = ifelse(gender=="1", "Male","Female"))
 
 p1 <- ggplot(summary_bfi_fig2,aes(x = gender, y = Neuroticism)) +
-   stat_summary(aes(fill=gender),fun.y=mean,geom="bar",alpha=0.8, colour="black", position="dodge", show.legend = F) +
+   stat_summary(aes(fill=gender),fun=mean,geom="bar",alpha=0.8, colour="black", position="dodge", show.legend = F) +
    stat_summary(aes(group=gender),fun.data=mean_sdl,geom="errorbar",size=0.5,width=0.2,position=position_dodge(.9)) +
    scale_fill_manual(values=c("gray10","white")) +
    theme(panel.background = element_blank()) +

@@ -1,7 +1,11 @@
 % Template for thesis format at Department of Psychology, Senshu University
 \documentclass[12pt,a4paper,xelatex,ja=standard]{bxjsarticle}
 \geometry{left = 3.5cm, right = 3.5cm, top = 4.5cm, bottom = 4.5cm}
-
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+% table format
+\usepackage{caption}
+\captionsetup[table]{labelsep=newline}
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
@@ -319,12 +323,10 @@ $if(dir)$
   \newenvironment{LTR}{\beginL}{\endL}
 \fi
 $endif$
-
 $if(natbib)$
 \usepackage[$natbiboptions$]{natbib}
 \bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
 $endif$
-
 $if(biblatex)$
 \usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
 $for(bibliography)$
@@ -340,9 +342,7 @@ $if(csl-refs)$
   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
   {\par}
 $endif$
-
 $if(title)$
-\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$
 $if(subtitle)$
 $if(beamer)$
@@ -369,6 +369,24 @@ $if(logo)$
 \logo{\includegraphics{$logo$}}
 $endif$
 $endif$
+\usepackage{marginnote}
+\usepackage{titlesec}
+\titleformat{\section}[hang]{\large\filcenter\bfseries}{\thesection}{1zw}{}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 \begin{document}
 \pagestyle{empty}
@@ -465,6 +483,5 @@ $endif$
 $endif$
 $for(include-after)$
 $include-after$
-
 $endfor$
 \end{document}
