@@ -25,16 +25,71 @@ senshu_thesis  <- function(Rmd_file, Bib_file) {
   render(tmp_rmd, format_pdf, output_file)
 }
 
+#' Set Research Compendium of senshu
+#'
+#' @param file_name file name and directory name of RMarkdown
+#' @return Make directories for Research Compendium of CCP Lab and
+#' R Markdown file for thesis at Department of Psychology, Senshu University
+#' @examples # set_rc()
+#' @export
+set_rc <- function (file_name = "paper"){
+  path = getwd()
+  # make README
+  if(!file.exists(file.path(path, "README.md"))){
+    file.create(file.path(path, "README.md"), showWarnings = FALSE)
+    writeLines("## README\n\n- analysis:\n- data:\n- function:\n- materials:", "README.md")
+  }
+
+  # make RMarkdown file and directory
+  if(!file.exists(file.path(path, paste0(file_name,".Rmd")))){
+    rmarkdown::draft(paste0(file_name,".Rmd"), template = "thesis_senshu", package = "senshuRmd", edit = FALSE)
+  }
+
+  # make analysis directory
+  if(!dir.exists(file.path(path, "analysis"))){
+    dir.create(file.path(path, "analysis"), showWarnings = FALSE)
+    file.create(file.path(path, "analysis/README_analysis.md"), showWarnings = FALSE)
+    writeLines("README about analysis", "analysis/README_analysis.md")
+  }
+
+  # make data directory
+  if(!dir.exists(file.path(path, "analysis/data"))){
+    dir.create(file.path(path, "analysis/data"), showWarnings = FALSE)
+    file.create(file.path(path, "analysis/data/README_data.md"), showWarnings = FALSE)
+    writeLines("README about data", "analysis/data/README_data.md")
+  }
+
+  # make function directory
+  if(!dir.exists(file.path(path, "analysis/function"))){
+    dir.create(file.path(path, "analysis/function"), showWarnings = FALSE)
+    file.create(file.path(path, "analysis/function/README_function.md"), showWarnings = FALSE)
+    writeLines("README about function", "analysis/function/README_function.md")
+  }
+
+  # make materials directory
+  if(!dir.exists(file.path(path, "materials"))){
+    dir.create(file.path(path, "materials"), showWarnings = FALSE)
+    file.create(file.path(path, "materials/README_materials.md"), showWarnings = FALSE)
+    writeLines("README about materials", "materials/README_materials.md")
+  }
+
+  # make labnote directory
+  if(!dir.exists(file.path(path, "labnote"))){
+    dir.create(file.path(path, "labnote"), showWarnings = FALSE)
+    file.create(file.path(path, "labnote/README_labnote.md"), showWarnings = FALSE)
+    writeLines("README about labnote", "materials/README_labnote.md")
+  }
+}
+
 
 #' Set Research Compendium of CCP Lab
 #'
 #' @param file_name file name and directory name of RMarkdown
 #' @return Make directories for Research Compendium of CCP Lab and
 #' R Markdown file for thesis at Department of Psychology, Senshu University
-#' @examples # set_rc_ccp("yoshihiko_kunisato")
+#' @examples # set_rc_ccp()
 #' @export
-
-set_rc_ccp <- function (file_name = "thesis"){
+set_rc_ccp <- function (file_name = "paper"){
   path = getwd()
   # make README
   if(!file.exists(file.path(path, "README.md"))){
@@ -54,17 +109,17 @@ set_rc_ccp <- function (file_name = "thesis"){
   }
 
   # make data directory
-  if(!dir.exists(file.path(path, "data"))){
-    dir.create(file.path(path, "data"), showWarnings = FALSE)
-    file.create(file.path(path, "data/README_data.md"), showWarnings = FALSE)
-    writeLines("README about data", "data/README_data.md")
+  if(!dir.exists(file.path(path, "analysis/data"))){
+    dir.create(file.path(path, "analysis/data"), showWarnings = FALSE)
+    file.create(file.path(path, "analysis/data/README_data.md"), showWarnings = FALSE)
+    writeLines("README about data", "analysis/data/README_data.md")
   }
 
   # make function directory
-  if(!dir.exists(file.path(path, "function"))){
-    dir.create(file.path(path, "function"), showWarnings = FALSE)
-    file.create(file.path(path, "function/README_function.md"), showWarnings = FALSE)
-    writeLines("README about function", "function/README_function.md")
+  if(!dir.exists(file.path(path, "analysis/function"))){
+    dir.create(file.path(path, "analysis/function"), showWarnings = FALSE)
+    file.create(file.path(path, "analysis/function/README_function.md"), showWarnings = FALSE)
+    writeLines("README about function", "analysis/function/README_function.md")
   }
 
   # make materials directory
@@ -72,5 +127,19 @@ set_rc_ccp <- function (file_name = "thesis"){
     dir.create(file.path(path, "materials"), showWarnings = FALSE)
     file.create(file.path(path, "materials/README_materials.md"), showWarnings = FALSE)
     writeLines("README about materials", "materials/README_materials.md")
+  }
+
+  # make exercises directory
+  if(!dir.exists(file.path(path, "exercises"))){
+    dir.create(file.path(path, "exercises"), showWarnings = FALSE)
+    file.create(file.path(path, "exercises/README_exercises.md"), showWarnings = FALSE)
+    writeLines("README about exercises", "exercises/README_exercises.md")
+  }
+
+  # make labnote directory
+  if(!dir.exists(file.path(path, "labnote"))){
+    dir.create(file.path(path, "labnote"), showWarnings = FALSE)
+    file.create(file.path(path, "labnote/README_labnote.md"), showWarnings = FALSE)
+    writeLines("README about labnote", "materials/README_labnote.md")
   }
 }
