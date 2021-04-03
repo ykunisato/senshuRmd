@@ -4,10 +4,7 @@
 \alias{set_rc}
 \title{Set Research Compendium of senshu}
 \usage{
-set_rc(file_name = "paper")
-}
-\arguments{
-\item{file_name}{file name and directory name of RMarkdown}
+set_rc()
 }
 \value{
 Make directories for Research Compendium of CCP Lab and

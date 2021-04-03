@@ -40,27 +40,47 @@ remotes::install_github("ykunisato/senshuRmd")
 
 RStudioで新規プロジェクトを作成します(GitHubを使う場合は，version controlで作成)。
 
-#### 2.新規プロジェクトフォルダ内で以下を実行します。
+#### 2.新規プロジェクトフォルダ内にResearch Compendiumを作成
 
-set_rc_ccp()内に，卒論や修論用Rmarkdownに付けたい名前をいれます（ローマ字で，名前_姓が無難かと思います）。そうすると，研究室用Research CompendiumのためのフォルダとREADMEファイルの作成と卒論・修論用RMarkdownのフォルダとファイルを作成します。
+set_rc()で，研究室用Research CompendiumのためのフォルダとREADMEファイルの作成と卒論・修論用RMarkdownのフォルダとファイルが作成されます。
 
 ```
 library(senshuRmd)
-set_rc_ccp("yoshihiko_kunisato")
+set_rc()
 ```
 
-以下のような感じのフォルダ構成になります。
+以下のようなフォルダ構成です。
 
-![](https://ykunisato.github.io/senshuRmd/fig1.png)
+- paper
+- analysis
+- (analysis内) data
+- (analysis内) function
+- materials
+- labnote
 
-ご自身が名前を付けたフォルダに卒論や修論用Rmarkdownがはいっていますので，そちらを開いて，Knitをしてみてください。卒論・修論フォーマットのPDFが出力されるかと思います。
+各フォルダ内のREADMEを一度読んでください。各フォルダ内に必要なファイルをおいて，paperフォルダ内のpaper.Rmdを開いて，knitをクリックして，卒論・修論PDFが出力されるか確認してみましょう。
 
+
+#### 計算論的臨床心理学研究室（国里研究室）のゼミ生向け関数
+
+
+```
+library(senshuRmd)
+set_rc_ccp()
+```
+
+- paper
+- analysis
+- (analysis内) data
+- (analysis内) function
+- materials
+- exercises
+- labnote
 
 ### 卒論・修論用RMarkdownの準備
 
 上記のように，研究室用Research Compendiumは不要で，卒論・修論用RMarkdownだけがほしい場合は，RStudioで，「File」 -> 「New File」 -> 「R Markdown...」 をクリックする。以下の画面がでてきたら，「From Template」から「Thesis format for Senshu {senshuRmd}」を選んで，OKをクリックする。これで，卒論・修論用RMarkdownが準備されます。
 
-![](https://ykunisato.github.io/senshuRmd//fig2.png)
 
 ## 引用文献に関する注意事項
 

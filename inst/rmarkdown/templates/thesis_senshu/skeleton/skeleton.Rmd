@@ -3,12 +3,11 @@ title: 'タイトル:'
 author: '学籍番号: 氏名:'
 
 suppress-bibliography: yes
-output: senshuRmd::senshu_thesis(Rmd_file = "Untitled.Rmd", Bib_file = "reference.bib")
+output: senshuRmd::senshu_thesis(Rmd_file = "paper.Rmd", Bib_file = "reference.bib")
 ---
 
 <!-- 
-
-<<< このRmdテンプレートを使う際の注意事項 >>>
+このRmdテンプレートを使う際の注意事項
 1.この上の部分は，「タイトル」の変更と学籍番号・氏名の追加以外は絶対に変更しない。
 　変更すると正常に動かなくなります。
 
