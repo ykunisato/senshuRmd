@@ -4,14 +4,7 @@
 \alias{set_rc_ccp}
 \title{Set Research Compendium of CCP Lab}
 \usage{
-set_rc_ccp(file_name = "paper")
-}
-\arguments{
-\item{file_name}{file name and directory name of RMarkdown}
-}
-\value{
-Make directories for Research Compendium of CCP Lab and
-R Markdown file for thesis at Department of Psychology, Senshu University
+set_rc_ccp()
 }
 \description{
 Set Research Compendium of CCP Lab

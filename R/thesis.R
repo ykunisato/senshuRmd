@@ -25,77 +25,35 @@ senshu_thesis  <- function(Rmd_file, Bib_file) {
   render(tmp_rmd, format_pdf, output_file)
 }
 
-#' Set Research Compendium of senshu
-#' @return Make directories for Research Compendium of CCP Lab and
-#' R Markdown file for thesis at Department of Psychology, Senshu University
+#' Set Research Compendium of Department of Psychology, Senshu University
+#' @importFrom rstudioapi navigateToFile
 #' @examples # set_rc()
 #' @export
 set_rc <- function (){
-  path = getwd()
-  # make README
-  if(!file.exists(file.path(path, "README.md"))){
-    file.create(file.path(path, "README.md"), showWarnings = FALSE)
-    writeLines("## README\n\n- analysis:\n- data:\n- function:\n- materials:", "README.md")
-  }
 
-  # make RMarkdown file and directory
-  rmarkdown::draft("paper.Rmd", template = "thesis_senshu", package = "senshuRmd", edit = FALSE)
-
-  # make analysis directory
-  if(!dir.exists(file.path(path, "analysis"))){
-    dir.create(file.path(path, "analysis"), showWarnings = FALSE)
-    file.create(file.path(path, "analysis/README_analysis.md"), showWarnings = FALSE)
-    writeLines("README about analysis", "analysis/README_analysis.md")
-  }
-
-  # make data directory
-  if(!dir.exists(file.path(path, "analysis/data"))){
-    dir.create(file.path(path, "analysis/data"), showWarnings = FALSE)
-    file.create(file.path(path, "analysis/data/README_data.md"), showWarnings = FALSE)
-    writeLines("README about data", "analysis/data/README_data.md")
-  }
-
-  # make function directory
-  if(!dir.exists(file.path(path, "analysis/function"))){
-    dir.create(file.path(path, "analysis/function"), showWarnings = FALSE)
-    file.create(file.path(path, "analysis/function/README_function.md"), showWarnings = FALSE)
-    writeLines("README about function", "analysis/function/README_function.md")
-  }
-
-  # make materials directory
-  if(!dir.exists(file.path(path, "materials"))){
-    dir.create(file.path(path, "materials"), showWarnings = FALSE)
-    file.create(file.path(path, "materials/README_materials.md"), showWarnings = FALSE)
-    writeLines("README about materials", "materials/README_materials.md")
-  }
-
-  # make labnote directory
-  if(!dir.exists(file.path(path, "labnote"))){
-    dir.create(file.path(path, "labnote"), showWarnings = FALSE)
-    file.create(file.path(path, "labnote/README_labnote.md"), showWarnings = FALSE)
-    writeLines("README about labnote", "materials/README_labnote.md")
-  }
 }
 
 
 #' Set Research Compendium of CCP Lab
-#'
-#' @param file_name file name and directory name of RMarkdown
-#' @return Make directories for Research Compendium of CCP Lab and
-#' R Markdown file for thesis at Department of Psychology, Senshu University
+#' @importFrom rstudioapi navigateToFile
 #' @examples # set_rc_ccp()
 #' @export
-set_rc_ccp <- function (file_name = "paper"){
+set_rc_ccp <- function (){
   path = getwd()
   # make README
   if(!file.exists(file.path(path, "README.md"))){
     file.create(file.path(path, "README.md"), showWarnings = FALSE)
-    writeLines("## README\n\n- analysis:\n- data:\n- function:\n- materials:", "README.md")
+    writeLines("## README\n\n
+               - analysis(data\u3068function\u304c\u542b\u307e\u308c\u3066\u3044\u307e\u3059):\u89e3\u6790\u7528\u30d5\u30a9\u30eb\u30c0\n
+               - materials:\u7814\u7a76\u6750\u6599\u30d5\u30a9\u30eb\u30c0\n
+               - exercises:\u30bc\u30df\u3067\u306e\u6f14\u7fd2\u8ab2\u984c\u3092\u884c\u3046\u30d5\u30a9\u30eb\u30c0\n
+               - labnote:\u30e9\u30dc\u30ce\u30fc\u30c8\u3092\u4fdd\u5b58\u3059\u308b\u30d5\u30a9\u30eb\u30c0\n", "README.md")
+    navigateToFile(file.path(path, "README.md"))
   }
 
-  # make RMarkdown file and directory
-  if(!file.exists(file.path(path, paste0(file_name,".Rmd")))){
-    rmarkdown::draft(paste0(file_name,".Rmd"), template = "thesis_senshu", package = "senshuRmd", edit = FALSE)
+  # make paper.Rmd
+  if(!file.exists(file.path(path, "paper/paper.Rmd"))){
+    rmarkdown::draft(paste0("paper.Rmd"), template = "thesis_senshu", package = "senshuRmd", edit = FALSE)
   }
   # make analysis directory
   if(!dir.exists(file.path(path, "analysis"))){
