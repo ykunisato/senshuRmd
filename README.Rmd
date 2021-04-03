@@ -51,31 +51,34 @@ set_rc()
 
 以下のようなフォルダ構成です。
 
-- paper
-- analysis
-- (analysis内) data
-- (analysis内) function
-- materials
-- labnote
+- paper:卒論・修論用のRmdファイルが用意されています。
+- analysis：解析用ファイルを入れる用のフォルダです。
+- (analysis内) data：解析用データを入れるフォルダです。
+- (analysis内) function：解析用Rの関数を入れるフォルダです。
+- materials：研究で使った材料を入れるフォルダです。
+- labnote：ラボノートを保管するフォルダです。
 
 各フォルダ内のREADMEを一度読んでください。各フォルダ内に必要なファイルをおいて，paperフォルダ内のpaper.Rmdを開いて，knitをクリックして，卒論・修論PDFが出力されるか確認してみましょう。
 
 
 #### 計算論的臨床心理学研究室（国里研究室）のゼミ生向け関数
 
+計算論的臨床心理学研究室（国里研究室）のゼミ生は，演習をしたりするので，set_rc_cpp()で，Research Compendiumを作成ください。
 
 ```
 library(senshuRmd)
 set_rc_ccp()
 ```
 
-- paper
-- analysis
-- (analysis内) data
-- (analysis内) function
-- materials
-- exercises
-- labnote
+以下のようなフォルダ構成です。
+
+- paper:卒論・修論用のRmdファイルが用意されています。
+- analysis：解析用ファイルを入れる用のフォルダです。
+- (analysis内) data：解析用データを入れるフォルダです。
+- (analysis内) function：解析用Rの関数を入れるフォルダです。
+- materials：研究で使った材料を入れるフォルダです。
+- exercises：ゼミで行う演習課題用のフォルダです。
+- labnote：ラボノートを保管するフォルダです。
 
 ### 卒論・修論用RMarkdownの準備
 

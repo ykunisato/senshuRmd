@@ -29,19 +29,42 @@ senshuRmdは，専修大学人間科学部心理学科での卒業論文・修�
 RStudioで新規プロジェクトを作成します(GitHubを使う場合は，version
 controlで作成)。
 
-#### 2.新規プロジェクトフォルダ内で以下を実行します。
+#### 2.新規プロジェクトフォルダ内にResearch Compendiumを作成
 
-set\_rc\_ccp()内に，卒論や修論用Rmarkdownに付けたい名前をいれます（ローマ字で，名前\_姓が無難かと思います）。そうすると，研究室用Research
-CompendiumのためのフォルダとREADMEファイルの作成と卒論・修論用RMarkdownのフォルダとファイルを作成します。
+set\_rc()で，研究室用Research
+CompendiumのためのフォルダとREADMEファイルの作成と卒論・修論用RMarkdownのフォルダとファイルが作成されます。
 
     library(senshuRmd)
-    set_rc_ccp("yoshihiko_kunisato")
+    set_rc()
 
-以下のような感じのフォルダ構成になります。
+以下のようなフォルダ構成です。
 
-![](https://ykunisato.github.io/senshuRmd/fig1.png)
+-   paper:卒論・修論用のRmdファイルが用意されています。
+-   analysis：解析用ファイルを入れる用のフォルダです。
+-   (analysis内) data：解析用データを入れるフォルダです。
+-   (analysis内) function：解析用Rの関数を入れるフォルダです。
+-   materials：研究で使った材料を入れるフォルダです。
+-   labnote：ラボノートを保管するフォルダです。
 
-ご自身が名前を付けたフォルダに卒論や修論用Rmarkdownがはいっていますので，そちらを開いて，Knitをしてみてください。卒論・修論フォーマットのPDFが出力されるかと思います。
+各フォルダ内のREADMEを一度読んでください。各フォルダ内に必要なファイルをおいて，paperフォルダ内のpaper.Rmdを開いて，knitをクリックして，卒論・修論PDFが出力されるか確認してみましょう。
+
+#### 計算論的臨床心理学研究室（国里研究室）のゼミ生向け関数
+
+計算論的臨床心理学研究室（国里研究室）のゼミ生は，演習をしたりするので，set\_rc\_cpp()で，Research
+Compendiumを作成ください。
+
+    library(senshuRmd)
+    set_rc_ccp()
+
+以下のようなフォルダ構成です。
+
+-   paper:卒論・修論用のRmdファイルが用意されています。
+-   analysis：解析用ファイルを入れる用のフォルダです。
+-   (analysis内) data：解析用データを入れるフォルダです。
+-   (analysis内) function：解析用Rの関数を入れるフォルダです。
+-   materials：研究で使った材料を入れるフォルダです。
+-   exercises：ゼミで行う演習課題用のフォルダです。
+-   labnote：ラボノートを保管するフォルダです。
 
 ### 卒論・修論用RMarkdownの準備
 
@@ -51,8 +74,6 @@ Compendiumは不要で，卒論・修論用RMarkdownだけがほしい場合は�
 をクリックする。以下の画面がでてきたら，「From Template」から「Thesis
 format for Senshu
 {senshuRmd}」を選んで，OKをクリックする。これで，卒論・修論用RMarkdownが準備されます。
-
-![](https://ykunisato.github.io/senshuRmd//fig2.png)
 
 ## 引用文献に関する注意事項
 
