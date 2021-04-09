@@ -1,6 +1,4 @@
-#' R Markdown output formats Template for thesis at Department of Psychology, Senshu University
-#' Format for thesis at Department of Psychology, Senshu University
-#'
+#' @title R Markdown output formats Template for thesis at Department of Psychology, Senshu University
 #' @importFrom rmarkdown render
 #' @importFrom rmarkdown pdf_document
 #' @importFrom jpaRmd jpa_cite
@@ -25,7 +23,7 @@ senshu_thesis  <- function(Rmd_file, Bib_file) {
   render(tmp_rmd, format_pdf, output_file)
 }
 
-#' Set Research Compendium of Department of Psychology, Senshu University
+#' @title Research Compendium of Department of Psychology, Senshu University
 #' @importFrom rstudioapi navigateToFile
 #' @examples # set_rc()
 #' @export
@@ -81,7 +79,7 @@ set_rc <- function (){
 }
 
 
-#' Set Research Compendium of CCP Lab
+#' @title Research Compendium of CCP Lab
 #' @importFrom rstudioapi navigateToFile
 #' @examples # set_rc_ccp()
 #' @export
