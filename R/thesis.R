@@ -140,3 +140,40 @@ set_rc_ccp <- function (){
     writeLines("# README(labnote)\n\n# \u96fb\u5b50\u30e9\u30dc\u30ce\u30fc\u30c8\u306f\u3053\u3061\u3089\u306b\u4fdd\u5b58\u3057\u3066\u304f\u3060\u3055\u3044\u3002\n# \u307e\u305a\uff0csetwd()\u3067labnote\u3092\u4f5c\u696d\u30d5\u30a9\u30eb\u30c0\u306b\u3057\u307e\u3059\u3002\nsetwd('labnote')\n# \u4ee5\u4e0b\u306eelnjp_pdf()\u3067\u30e9\u30dc\u30ce\u30fc\u30c8\u304c\u4f5c\u308c\u307e\u3059\u3002\neln4Rmd::elnjp_pdf()\n# \u4ee5\u4e0b\u306e\u30ea\u30f3\u30af\u5148\u3092\u307f\u3066\uff0cOSF\u304bGitHub\u306e\u8a2d\u5b9a\u3092\u3057\u307e\u3059\u3002\n# https://github.com/ykunisato/eln4Rmd\n#OSF\u3092\u4f7f\u3046\u5834\u5408\u306f\uff0c\u4ee5\u4e0b\u3067\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\u3057\u307e\u3059\u3002\neln4Rmd::up_elnjp_osf(osf=\"OSF\u306eURL\")\n# GitHub\u3092\u4f7f\u3046\u5834\u5408\u306f\uff0c\u4ee5\u4e0b\u3067\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\uff08\u30b3\u30df\u30c3\u30c8\u3068\u30d7\u30c3\u30b7\u30e5\uff09\u3057\u307e\u3059\u3002\neln4Rmd::up_elnjp_git()", "labnote/README_labnote.r")
   }
 }
+
+
+#' @title R Markdown output formats template for analysis at Department of Psychology, Senshu University
+#' @importFrom stringr str_replace
+#' @importFrom rstudioapi navigateToFile
+#' @param Rmd_file file name of R Markdown file
+#' @param rc If you are using Research Compendium of senshuRmd,
+#' you can create a Rmd file in the "analysis" directory from the current directory.
+#' @export
+set_analysis  <- function(Rmd_file, rc = TRUE) {
+  if(missing(Rmd_file)){
+    stop("Rmd_file\u3000= \"\u30d5\u30a1\u30a4\u30eb\u540d\"\u3067\uff0c\u4f5c\u6210\u3059\u308bRmd\u30d5\u30a1\u30a4\u30eb\u540d\u3092\u6307\u5b9a\u3057\u3066\u304f\u3060\u3055\u3044\u3002\u30d5\u30a1\u30a4\u30eb\u540d\u306f\uff0cAnalysis01\u306e\u3088\u3046\u306b\u82f1\u8a9e\u3067\u6307\u5b9a\u304f\u3060\u3055\u3044\u3002")
+  }
+
+  path = getwd()
+  if(rc == TRUE){
+    path <- paste0(path, "/analysis")
+  }
+  file_path <- paste0(path,"/",Rmd_file,".Rmd")
+
+  if(!exists(file_path)){
+    path_skeleton <- system.file("rmarkdown/templates/analysis/skeleton/skeleton.Rmd",package = "senshuRmd")
+    text_skeleton <- readLines(path_skeleton, warn = F)
+    tmp_rmd <- file(file_path, "w")
+
+    for (i in 1:length(text_skeleton)) {
+      st <- text_skeleton[i]
+      st <- str_replace(st, pattern = "title: 'title'",
+                        replacement = paste0("title: ", "'",Rmd_file,"'"))
+      writeLines(st, tmp_rmd)
+    }
+    close(tmp_rmd)
+    navigateToFile(file_path)
+  }else{
+    stop("\u6307\u5b9a\u3055\u308c\u305f\u30d5\u30a1\u30a4\u30eb\u540d\u306eRmd\u30d5\u30a1\u30a4\u30eb\u306f\u65e2\u306b\u5b58\u5728\u3057\u3066\u3044\u307e\u3059\u3002\u5225\u306e\u30d5\u30a1\u30a4\u30eb\u540d\u3067\u4f5c\u6210\u304f\u3060\u3055\u3044\u3002")
+  }
+}

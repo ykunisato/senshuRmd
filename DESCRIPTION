@@ -13,6 +13,7 @@ RoxygenNote: 7.1.1
 Imports: 
     rmarkdown,
     jpaRmd,
-    rstudioapi
+    rstudioapi,
+    stringr
 Remotes: 
     ykunisato/jpaRmd
