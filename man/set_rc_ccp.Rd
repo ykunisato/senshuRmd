@@ -2,12 +2,12 @@
 % Please edit documentation in R/thesis.R
 \name{set_rc_ccp}
 \alias{set_rc_ccp}
-\title{Set Research Compendium of CCP Lab}
+\title{Research Compendium of CCP Lab}
 \usage{
 set_rc_ccp()
 }
 \description{
-Set Research Compendium of CCP Lab
+Research Compendium of CCP Lab
 }
 \examples{
 # set_rc_ccp()

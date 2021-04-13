@@ -2,12 +2,12 @@
 % Please edit documentation in R/thesis.R
 \name{set_rc}
 \alias{set_rc}
-\title{Set Research Compendium of Department of Psychology, Senshu University}
+\title{Research Compendium of Department of Psychology, Senshu University}
 \usage{
 set_rc()
 }
 \description{
-Set Research Compendium of Department of Psychology, Senshu University
+Research Compendium of Department of Psychology, Senshu University
 }
 \examples{
 # set_rc()

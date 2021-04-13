@@ -2,8 +2,7 @@
 % Please edit documentation in R/thesis.R
 \name{senshu_thesis}
 \alias{senshu_thesis}
-\title{R Markdown output formats Template for thesis at Department of Psychology, Senshu University
-Format for thesis at Department of Psychology, Senshu University}
+\title{R Markdown output formats Template for thesis at Department of Psychology, Senshu University}
 \usage{
 senshu_thesis(Rmd_file, Bib_file)
 }
@@ -14,5 +13,4 @@ senshu_thesis(Rmd_file, Bib_file)
 }
 \description{
 R Markdown output formats Template for thesis at Department of Psychology, Senshu University
-Format for thesis at Department of Psychology, Senshu University
 }
