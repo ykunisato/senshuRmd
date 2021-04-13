@@ -1,6 +1,3 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # senshuRmd
 
 <!-- badges: start -->
@@ -17,8 +14,10 @@ senshuRmdは，専修大学人間科学部心理学科での卒業論文・修�
 
 以下のコマンドをRコンソールに打ち込んで，Github経由でインストールしてください。
 
-    # install.packages("remotes")
-    remotes::install_github("ykunisato/senshuRmd")
+``` r
+# install.packages("remotes")
+remotes::install_github("ykunisato/senshuRmd")
+```
 
 ## 使用法
 
@@ -34,8 +33,10 @@ controlで作成)。
 set\_rc()で，研究室用Research
 CompendiumのためのフォルダとREADMEファイルの作成と卒論・修論用RMarkdownのフォルダとファイルが作成されます。
 
-    library(senshuRmd)
-    set_rc()
+``` r
+library(senshuRmd)
+set_rc()
+```
 
 以下のようなフォルダ構成です。
 
@@ -46,15 +47,18 @@ CompendiumのためのフォルダとREADMEファイルの作成と卒論・修�
 -   materials：研究で使った材料を入れるフォルダです。
 -   labnote：ラボノートを保管するフォルダです。
 
-各フォルダ内のREADMEを一度読んでください。各フォルダ内に必要なファイルをおいて，paperフォルダ内のpaper.Rmdを開いて，knitをクリックして，卒論・修論PDFが出力されるか確認してみましょう。
+
+最初に開かれたREADME.mdに,日々の研究活動で使用する便利な関数について説明していますので，ご確認ください。
 
 #### 計算論的臨床心理学研究室（国里研究室）のゼミ生向け関数
 
 計算論的臨床心理学研究室（国里研究室）のゼミ生は，演習をしたりするので，set\_rc\_cpp()で，Research
 Compendiumを作成ください。
 
-    library(senshuRmd)
-    set_rc_ccp()
+``` r
+library(senshuRmd)
+set_rc_ccp()
+```
 
 以下のようなフォルダ構成です。
 
@@ -65,6 +69,8 @@ Compendiumを作成ください。
 -   materials：研究で使った材料を入れるフォルダです。
 -   exercises：ゼミで行う演習課題用のフォルダです。
 -   labnote：ラボノートを保管するフォルダです。
+
+最初に開かれたREADME.mdに,日々の研究活動で使用する便利な関数について説明していますので，ご確認ください。
 
 ### 卒論・修論用RMarkdownの準備
 
