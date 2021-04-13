@@ -160,7 +160,7 @@ set_analysis  <- function(Rmd_file, rc = TRUE) {
   }
   file_path <- paste0(path,"/",Rmd_file,".Rmd")
 
-  if(!exists(file_path)){
+  if(!file.exists(file_path)){
     path_skeleton <- system.file("rmarkdown/templates/analysis/skeleton/skeleton.Rmd",package = "senshuRmd")
     text_skeleton <- readLines(path_skeleton, warn = F)
     tmp_rmd <- file(file_path, "w")
