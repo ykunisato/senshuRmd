@@ -1,9 +1,11 @@
 ---
 title: 'タイトル:'
 author: '学籍番号: 氏名:'
-
 suppress-bibliography: yes
-output: senshuRmd::senshu_thesis(Rmd_file = "paper.Rmd", Bib_file = "reference.bib")
+output:
+  jpaRmd::render_jjp:
+    Rmd_file: paper.Rmd
+    Bib_file: references.bib
 ---
 
 <!-- 
@@ -244,8 +246,8 @@ summary_bfi <- bfi %>%
           Openness = O1 + O2 + O3 + O4 + O5) %>% 
    select(Extraversion,Neuroticism,Conscientiousness,Agreeableness,Openness) %>% 
    describe() %>% 
-   as.data.frame() %>% 
-   select(n, mean, sd, median, min, max)
+   as_tibble() %>%
+   select(-vars, -trimmed, -mad, -range, -se)
 
 # kableを使って表を作る（以下のようにやると結構きれいになります）
 kable(summary_bfi, 
@@ -253,10 +255,13 @@ kable(summary_bfi,
       booktabs = T, 
       caption = "Descriptive Statistics of bfi",
       digits = 2,
-      col.names = c("n","Mean","SD","Median","Min","Max") )%>%
-  kable_styling(latex_options = c("striped", "hold_position"),full_width = F) %>%
-  add_footnote(c("Note. SD=standard deviation"))
+      col.names = c("n","Mean","SD","Median","Min","Max","Skewness","kurtosis")) %>%
+  kable_styling(latex_options = c("striped", "hold_position"),full_width = F)
 ```
+
+\begin{center}
+Note. SD=standard deviation
+\end{center}
 
 
 ## メインの解析の前提となる解析
@@ -310,21 +315,26 @@ Rチャンクの指定において，\\label{fig:figs}以降に図のタイト�
 -->
 ```{r figs, echo=FALSE, message=FALSE, warning=FALSE, fig.width=7,fig.height=4,fig.cap="\\label{fig:figs}Examples of bar plot and scatter plot "}
 # 相関係数の算出で使ったと同じデータを使う(genderは因子型にする)
-summary_bfi_fig2 <- summary_bfi_fig %>% 
+summary_bfi_fig2 <- summary_bfi_fig %>%
    mutate(gender = ifelse(gender=="1", "Male","Female"))
 
-p1 <- ggplot(summary_bfi_fig2,aes(x = gender, y = Neuroticism)) +
+p1 <- summary_bfi_fig2 %>%
+   filter(!is.na(Neuroticism)) %>%
+   ggplot(aes(x = gender, y = Neuroticism)) +
    stat_summary(aes(fill=gender),fun=mean,geom="bar",alpha=0.8, colour="black", position="dodge", show.legend = F) +
    stat_summary(aes(group=gender),fun.data=mean_sdl,geom="errorbar",size=0.5,width=0.2,position=position_dodge(.9)) +
    scale_fill_manual(values=c("gray10","white")) +
    theme(panel.background = element_blank()) +
    xlab("Gender") +
-   theme_apa() + 
+   theme_apa() +
    geom_signif(stat = "identity",data = data.frame(x = c(1),xend = c(2),y = c(30),annotation = c("***")),
               aes(x = x, xend = xend, y = y, yend = y, annotation = annotation)) +
    scale_y_continuous(expand = c(0,0),limits = c(0,33))
 
-p2 <- ggplot(summary_bfi_fig2,aes(x = Extraversion, y = Neuroticism)) +
+p2 <- summary_bfi_fig2 %>%
+   filter(!is.na(Neuroticism)) %>%
+   filter(!is.na(Extraversion)) %>%
+   ggplot(aes(x = Extraversion, y = Neuroticism)) +
    geom_point() +
    theme_apa()
 
