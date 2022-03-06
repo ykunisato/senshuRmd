@@ -4,13 +4,15 @@
 \alias{set_cbat}
 \title{Set template files for CBAT}
 \usage{
-set_cbat(name_repository = "name_repository", jsPsych_version = "6.3.1")
+set_cbat(task_name = "task_name", jsPsych_version = "7.1.2", use_rc = TRUE)
 }
 \arguments{
-\item{name_repository}{Set name of GitHub repository}
+\item{task_name}{name of task}
 
 \item{jsPsych_version}{If you set a specific version number of jsPsych,
 set_jsPsych prepare a file with that version of jsPsych.}
+
+\item{use_rc}{If you don"t use the RC, set FALSE.}
 }
 \description{
 Set template files for CBAT
