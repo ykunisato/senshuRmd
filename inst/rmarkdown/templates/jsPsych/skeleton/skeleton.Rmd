@@ -1,0 +1,100 @@
+---
+title: "Task name"
+author: "Your name"
+output:
+  html_document:
+    mathjax: null
+    highlight: null
+    theme: null
+#00 css: jspsych-6/css/jspsych.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(htmltools)
+tagList(
+#01 tags$script(src='jspsych-6/jspsych.js'),
+#02 tags$script(src='jspsych-6/platform.js'),
+#03 tags$script(src='jspsych-psychophysics-2/jspsych-psychophysics.js'),
+#04 tags$script(src='jspsych-6/plugins/jspsych-html-keyboard-response.js'),
+#05 tags$script(src='jspsych-6/plugins/jspsych-html-button-response.js'),
+#06 tags$script(src='jspsych-6/plugins/jspsych-fullscreen.js')
+#07 tags$script(type="text/javascript", src='jspsych-6/jspsych.js'),
+#08 tags$script(type="text/javascript", src='jspsych-6/platform.js'),
+#09 tags$script(type="text/javascript", src="lib/vendors/jquery-2.2.0.min.js"),
+#10 tags$script(type="text/javascript", src="lib/jspsych-pavlovia-3.2.5.js"),
+#11 tags$script(type="text/javascript", src='jspsych-psychophysics-2/jspsych-psychophysics.js'),
+#12 tags$script(type="text/javascript", src='jspsych-6/plugins/jspsych-html-keyboard-response.js'),
+#13 tags$script(type="text/javascript", src='jspsych-6/plugins/jspsych-html-button-response.js'),
+#14 tags$script(type="text/javascript", src='jspsych-6/plugins/jspsych-fullscreen.js')
+)
+```
+
+
+```{js}
+/* 全画面表示化 */
+var fullscreen = {
+  type: 'fullscreen',
+  message: '<p>以下のボタンをクリックすると，画面は全画面表示に切り替わります。全画面表示を止めたい場合はEscキーを押してください。</p>',
+  button_label: "全画面表示に切り替え",
+  fullscreen_mode: true
+};
+
+#15 /* pavlovia設定 */
+#16 var pavlovia_init = {
+#17   type: "pavlovia",
+#18   command: "init"
+#19 };
+#20 var pavlovia_finish = {
+#21   type: "pavlovia",
+#22   command: "finish"
+#23 };
+
+#24 /* スマホ設定 */
+#25 var nameOs = platform.os.toString().toLowerCase();
+#26 var welcome = {
+#27   type: "html-keyboard-response",
+#28   stimulus: "あなたの使っているOSは，「" + nameOs + "」ですね"
+#29 };
+#30 smartPhoneMessage = {
+#31     type: 'html-keyboard-response',
+#32     stimulus: '<strong>この実験はスマートフォンやタブレットでは実施できません。大変申し訳ございませんが，パソコンを使って実施をしてください。</strong>',
+#33     trial_duration: 5000
+#34 };
+
+/* 課題に関するコードを以下に書く。*/
+var welcome = {
+  type: "html-keyboard-response",
+  stimulus: "こんにちは！"
+};
+
+/* タイムライン設定 */
+var timeline = [];
+#35 //timeline.push(pavlovia_init);
+//timeline.push(fullscreen);
+#36 /* スマホ対応　*/
+#37 if (nameOs.indexOf('ios') !== -1 | nameOs.indexOf('android') !== -1 ){
+#38 	timeline.push(smartPhoneMessage);
+#39 }else{
+  timeline.push(welcome);
+#40 }
+#41 //timeline.push(pavlovia_finish);
+
+/* 課題開始 */
+jsPsych.init({
+  timeline: timeline,
+  on_finish: function() {
+    jsPsych.data.displayData();
+  }
+});
+```
+
+
+
+
+
+
+
