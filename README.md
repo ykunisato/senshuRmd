@@ -3,6 +3,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+## senshuRmdは2022/3/15をもって開発を終了しました。senshuRmdに含まれている関数は，今後，[psyinfr](https://github.com/ykunisato/psyinfr)パッケージでメンテナンスをする予定です。
+
 senshuRmdは，専修大学人間科学部心理学科での卒業論文・修士論文作成にあたり，有用なR関数やRmarkdownテンプレートがまとまったRパッケージです。大きく分けると，以下の３種類になります。
 
 - 卒業論文・修士論文作成用Rmarkdownテンプレート:
